@@ -17,7 +17,6 @@ public class Listas {
         for (String nome : listaNomes) {
             System.out.println(nome);
         }
-        scanner.close();
     }
 
     public void listarNomeGenero() {
