@@ -1,7 +1,7 @@
-package com.study.dao.service;
+package com.study.service;
 
 
-import com.study.dao.domain.Contrato;
+import com.study.domain.Contrato;
 
 public interface IContratoService extends IGenericService<Contrato,Long>   {
 

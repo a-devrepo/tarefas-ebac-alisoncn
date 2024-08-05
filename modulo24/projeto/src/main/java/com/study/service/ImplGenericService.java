@@ -1,7 +1,7 @@
-package com.study.dao.service;
+package com.study.service;
 
-import com.study.dao.IGenericDAO;
-import com.study.dao.ImplGenericDAO;
+import com.study.domain.dao.IGenericDAO;
+import com.study.domain.dao.ImplGenericDAO;
 
 public class ImplGenericService<T,U> implements IGenericService<T,U>{
 

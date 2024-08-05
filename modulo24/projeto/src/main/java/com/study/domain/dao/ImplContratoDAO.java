@@ -1,7 +1,7 @@
-package com.study.dao;
+package com.study.domain.dao;
 
 import com.study.anotacoes.Codigo;
-import com.study.dao.domain.Contrato;
+import com.study.domain.Contrato;
 import java.lang.reflect.Field;
 import java.security.SecureRandom;
 

@@ -1,4 +1,4 @@
-package com.study.dao.domain;
+package com.study.domain;
 
 import com.study.anotacoes.Codigo;
 

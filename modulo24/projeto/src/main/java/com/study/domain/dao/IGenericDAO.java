@@ -1,4 +1,4 @@
-package com.study.dao;
+package com.study.domain.dao;
 
 public interface IGenericDAO<T,U> {
     T salvar(T entity);

@@ -1,5 +1,5 @@
-package com.study.dao;
+package com.study.domain.dao;
 
-import com.study.dao.domain.Contrato;
+import com.study.domain.Contrato;
 
 public interface IContratoDAO extends IGenericDAO<Contrato,Long>{}

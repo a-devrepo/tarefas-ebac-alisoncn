@@ -1,10 +1,8 @@
 package com.study.service;
 
-import com.study.dao.ImplContratoDAO;
-import com.study.dao.ImplGenericDAO;
-import com.study.dao.domain.Contrato;
-import com.study.dao.service.IContratoService;
-import com.study.dao.service.ImplContratoService;
+import com.study.domain.dao.ImplContratoDAO;
+import com.study.domain.dao.ImplGenericDAO;
+import com.study.domain.Contrato;
 import org.junit.Assert;
 import org.junit.Test;
 

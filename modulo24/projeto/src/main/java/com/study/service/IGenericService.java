@@ -1,4 +1,4 @@
-package com.study.dao.service;
+package com.study.service;
 
 public interface IGenericService<T, U> {
   public T cadastrar(T entity);

@@ -1,4 +1,4 @@
-package com.study.dao;
+package com.study.domain.dao;
 
 
 import java.util.*;

@@ -1,7 +1,7 @@
-package com.study.dao.service;
+package com.study.service;
 
-import com.study.dao.ImplGenericDAO;
-import com.study.dao.domain.Contrato;
+import com.study.domain.dao.ImplGenericDAO;
+import com.study.domain.Contrato;
 
 public class ImplContratoService extends ImplGenericService<Contrato,Long> implements IContratoService {
 
