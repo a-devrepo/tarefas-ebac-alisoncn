@@ -6,4 +6,6 @@ public interface IClienteDAO {
     Cliente salvar(Cliente cliente);
 
     Cliente buscarPorCpf(String cpf);
+
+    void excluir(String cpf);
 }

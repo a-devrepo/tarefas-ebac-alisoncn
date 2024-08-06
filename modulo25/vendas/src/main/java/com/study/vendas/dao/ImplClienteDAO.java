@@ -12,4 +12,9 @@ public class ImplClienteDAO implements IClienteDAO {
     public Cliente buscarPorCpf(String cpf) {
         return null;
     }
+
+    @Override
+    public void excluir(String cpf) {
+
+    }
 }

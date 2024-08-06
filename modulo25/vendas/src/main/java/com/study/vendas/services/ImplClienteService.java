@@ -21,4 +21,9 @@ public class ImplClienteService implements IClienteService {
     public Cliente buscarPorCpf(String cpf) {
         return dao.buscarPorCpf(cpf);
     }
+
+    @Override
+    public void excluir(String cpf) {
+        dao.excluir(cpf);
+    }
 }
