@@ -1,7 +1,12 @@
 package com.study.vendas.domain;
 
-public class Cliente {
+import com.study.vendas.anotacoes.Codigo;
+import com.study.vendas.dao.Persistente;
 
+public class Cliente implements Persistente {
+
+    @Codigo("getCodigo")
+    private Long codigo;
     private String cpf;
     private String nome;
     private String telefone;
@@ -66,11 +71,20 @@ public class Cliente {
     public void setEstado(String estado) {
         this.estado = estado;
     }
-    
+
+    public Long getCodigo() {
+        return codigo;
+    }
+
+    public void setCodigo(Long codigo) {
+        this.codigo = codigo;
+    }
+
     @Override
     public String toString() {
         return "Cliente{" +
-                "cpf='" + cpf + '\'' +
+                "codigo=" + codigo +
+                ", cpf='" + cpf + '\'' +
                 ", nome='" + nome + '\'' +
                 ", telefone='" + telefone + '\'' +
                 ", endereco='" + endereco + '\'' +

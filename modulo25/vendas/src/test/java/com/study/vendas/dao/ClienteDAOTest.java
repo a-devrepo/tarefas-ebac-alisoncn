@@ -2,6 +2,9 @@ package com.study.vendas.dao;
 
 import com.study.vendas.dao.mocks.ImplClientDAOMock;
 import com.study.vendas.domain.Cliente;
+import com.study.vendas.exceptions.CodigoNaoEncontradoException;
+import com.study.vendas.exceptions.DataBaseException;
+import com.study.vendas.exceptions.RegistroNaoEncontradoException;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -16,8 +19,9 @@ public class ClienteDAOTest {
     }
 
     @Before
-    public void init(){
+    public void init() throws CodigoNaoEncontradoException, DataBaseException {
         cliente = new Cliente();
+        cliente.setCodigo(2367598130L);
         cliente.setCpf("111.111.111-11");
         cliente.setNome("Salomao");
         cliente.setEndereco("Rua A");
@@ -28,8 +32,8 @@ public class ClienteDAOTest {
     }
 
     @Test
-    public void pesquisarClienteTest(){
-        Cliente clienteConsultado = dao.buscarPorCpf(cliente.getCpf());
+    public void pesquisarClienteTest() throws RegistroNaoEncontradoException {
+        Cliente clienteConsultado = dao.buscar(2367598130L);
         Assert.assertNotNull(clienteConsultado);
     }
 }
