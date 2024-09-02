@@ -1,0 +1,6 @@
+package com.sudy.projeto.services.impl;
+
+import com.sudy.projeto.domain.model.Cliente;
+import com.sudy.projeto.services.generic.IGenericService;
+
+public interface IClienteService extends IGenericService<Cliente,String> {}
