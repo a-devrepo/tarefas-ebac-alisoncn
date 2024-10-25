@@ -1,4 +1,4 @@
-package com.study.projeto.domain.model;
+package com.study.projeto.domain.model.relational;
 
 import javax.persistence.Column;
 import javax.persistence.Embeddable;

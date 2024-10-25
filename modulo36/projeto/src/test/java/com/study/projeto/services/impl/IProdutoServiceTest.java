@@ -3,7 +3,7 @@ package com.study.projeto.services.impl;
 import com.study.projeto.domain.builders.ProdutoBuilder;
 import com.study.projeto.domain.dao.impl.produto.IProdutoDAO;
 import com.study.projeto.domain.dao.impl.produto.ImplProdutoDatabase1DAO;
-import com.study.projeto.domain.model.Produto;
+import com.study.projeto.domain.model.relational.Produto;
 import com.study.projeto.exceptions.DAOException;
 import com.study.projeto.exceptions.RegistroNaoEncontradoException;
 import com.study.projeto.util.GeradorCodigo;

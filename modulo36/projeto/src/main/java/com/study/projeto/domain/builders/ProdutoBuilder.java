@@ -1,6 +1,7 @@
 package com.study.projeto.domain.builders;
 
-import com.study.projeto.domain.model.Produto;
+import com.study.projeto.domain.model.relational.Produto;
+
 import java.math.BigDecimal;
 
 public class ProdutoBuilder {

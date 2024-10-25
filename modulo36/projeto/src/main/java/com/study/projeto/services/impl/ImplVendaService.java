@@ -1,9 +1,9 @@
 package com.study.projeto.services.impl;
 
 import com.study.projeto.domain.dao.impl.venda.ImplVendaDatabase1DAO;
-import com.study.projeto.domain.model.ItemVenda;
-import com.study.projeto.domain.model.Produto;
-import com.study.projeto.domain.model.Venda;
+import com.study.projeto.domain.model.relational.ItemVenda;
+import com.study.projeto.domain.model.relational.Produto;
+import com.study.projeto.domain.model.relational.Venda;
 import com.study.projeto.enums.StatusRegistro;
 import com.study.projeto.exceptions.AlteracaoStatusVendaException;
 import com.study.projeto.exceptions.DAOException;

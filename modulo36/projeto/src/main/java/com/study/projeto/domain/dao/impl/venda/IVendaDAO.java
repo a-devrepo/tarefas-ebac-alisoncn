@@ -1,7 +1,7 @@
 package com.study.projeto.domain.dao.impl.venda;
 
 import com.study.projeto.domain.dao.generic.IGenericDAO;
-import com.study.projeto.domain.model.Venda;
+import com.study.projeto.domain.model.relational.Venda;
 import com.study.projeto.exceptions.DAOException;
 
 public interface IVendaDAO extends IGenericDAO<Venda,Long> {

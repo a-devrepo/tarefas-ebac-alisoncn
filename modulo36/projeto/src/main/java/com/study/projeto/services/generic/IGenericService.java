@@ -2,7 +2,6 @@ package com.study.projeto.services.generic;
 
 import com.study.projeto.domain.model.Persistente;
 import com.study.projeto.exceptions.DAOException;
-import com.study.projeto.exceptions.RegistroDuplicadoException;
 import com.study.projeto.exceptions.RegistroNaoEncontradoException;
 
 import java.io.Serializable;

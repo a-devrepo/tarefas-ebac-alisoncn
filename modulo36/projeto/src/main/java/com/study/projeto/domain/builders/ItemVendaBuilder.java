@@ -1,8 +1,8 @@
 package com.study.projeto.domain.builders;
 
-import com.study.projeto.domain.model.ItemVenda;
-import com.study.projeto.domain.model.Produto;
-import com.study.projeto.domain.model.Venda;
+import com.study.projeto.domain.model.relational.ItemVenda;
+import com.study.projeto.domain.model.relational.Produto;
+import com.study.projeto.domain.model.relational.Venda;
 
 public class ItemVendaBuilder {
 

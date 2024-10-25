@@ -1,7 +1,7 @@
 package com.study.projeto.domain.dao.impl.venda;
 
 import com.study.projeto.domain.dao.generic.ImplGenericDatabase1DAO;
-import com.study.projeto.domain.model.Venda;
+import com.study.projeto.domain.model.relational.Venda;
 import com.study.projeto.enums.StatusRegistro;
 import com.study.projeto.exceptions.*;
 import java.util.List;

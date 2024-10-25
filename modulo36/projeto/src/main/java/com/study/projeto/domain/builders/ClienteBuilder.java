@@ -1,7 +1,7 @@
 package com.study.projeto.domain.builders;
 
-import com.study.projeto.domain.model.Cliente;
-import com.study.projeto.domain.model.Endereco;
+import com.study.projeto.domain.model.relational.Cliente;
+import com.study.projeto.domain.model.relational.Endereco;
 import com.study.projeto.enums.StatusCliente;
 
 public class ClienteBuilder {

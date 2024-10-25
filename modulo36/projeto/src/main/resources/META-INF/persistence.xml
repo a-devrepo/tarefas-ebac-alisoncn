@@ -7,11 +7,11 @@
 
         <provider>org.hibernate.ejb.HibernatePersistence</provider>
 
-        <class>package com.study.projeto.domain.model.Venda</class>
-        <class>package com.study.projeto.domain.model.ItemVenda</class>
-        <class>package com.study.projeto.domain.model.Cliente</class>
-        <class>package com.study.projeto.domain.model.Produto</class>
-        <class>package com.study.projeto.domain.model.Endereco</class>
+        <class>package com.study.projeto.domain.model.relational.Venda</class>
+        <class>package com.study.projeto.domain.model.relational.ItemVenda</class>
+        <class>package com.study.projeto.domain.model.relational.Cliente</class>
+        <class>package com.study.projeto.domain.model.relational.Produto</class>
+        <class>package com.study.projeto.domain.model.relational.Endereco</class>
 
         <properties>
             <property name="javax.persistence.jdbc.driver" value="org.postgresql.Driver"/> <!-- DB Driver -->
@@ -33,11 +33,11 @@
 
         <provider>org.hibernate.ejb.HibernatePersistence</provider>
 
-        <class>package com.study.projeto.domain.model.Venda</class>
-        <class>package com.study.projeto.domain.model.ItemVenda</class>
-        <class>package com.study.projeto.domain.model.Cliente</class>
-        <class>package com.study.projeto.domain.model.Produto</class>
-        <class>package com.study.projeto.domain.model.Endereco</class>
+        <class>package com.study.projeto.domain.model.relational.Venda</class>
+        <class>package com.study.projeto.domain.model.relational.ItemVenda</class>
+        <class>package com.study.projeto.domain.model.relational.Cliente</class>
+        <class>package com.study.projeto.domain.model.relational.Produto</class>
+        <class>package com.study.projeto.domain.model.relational.Endereco</class>
 
         <properties>
             <property name="javax.persistence.jdbc.driver" value="org.postgresql.Driver"/> <!-- DB Driver -->
@@ -58,11 +58,11 @@
 
         <provider>org.hibernate.ejb.HibernatePersistence</provider>
 
-        <class>package com.study.projeto.domain.model.Venda</class>
-        <class>package com.study.projeto.domain.model.ItemVenda</class>
-        <class>package com.study.projeto.domain.model.Cliente</class>
-        <class>package com.study.projeto.domain.model.Produto</class>
-        <class>package com.study.projeto.domain.model.Endereco</class>
+        <class>package com.study.projeto.domain.model.relational.Venda</class>
+        <class>package com.study.projeto.domain.model.relational.ItemVenda</class>
+        <class>package com.study.projeto.domain.model.relational.Cliente</class>
+        <class>package com.study.projeto.domain.model.relational.Produto</class>
+        <class>package com.study.projeto.domain.model.relational.Endereco</class>
 
         <properties>
             <property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver"/> <!-- DB Driver -->

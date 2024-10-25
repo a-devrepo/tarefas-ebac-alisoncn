@@ -1,11 +1,9 @@
 package com.study.projeto.domain.builders;
 
-import com.study.projeto.domain.model.Cliente;
-import com.study.projeto.domain.model.ItemVenda;
-import com.study.projeto.domain.model.Venda;
-import java.math.BigDecimal;
+import com.study.projeto.domain.model.relational.Cliente;
+import com.study.projeto.domain.model.relational.Venda;
+
 import java.time.Instant;
-import java.util.Set;
 
 public class VendaBuilder {
 

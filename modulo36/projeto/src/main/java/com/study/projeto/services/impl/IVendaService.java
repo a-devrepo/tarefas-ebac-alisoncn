@@ -1,7 +1,7 @@
 package com.study.projeto.services.impl;
 
-import com.study.projeto.domain.model.Produto;
-import com.study.projeto.domain.model.Venda;
+import com.study.projeto.domain.model.relational.Produto;
+import com.study.projeto.domain.model.relational.Venda;
 import com.study.projeto.exceptions.AlteracaoStatusVendaException;
 import com.study.projeto.exceptions.DAOException;
 import com.study.projeto.exceptions.OperacaoNaoPermitidaException;

@@ -1,5 +1,6 @@
-package com.study.projeto.domain.model;
+package com.study.projeto.domain.model.relational;
 
+import com.study.projeto.domain.model.Persistente;
 import com.study.projeto.enums.StatusCliente;
 import com.study.projeto.enums.StatusRegistro;
 

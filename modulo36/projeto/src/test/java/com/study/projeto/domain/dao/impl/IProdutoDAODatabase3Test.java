@@ -5,7 +5,7 @@ import static org.junit.Assert.*;
 import com.study.projeto.domain.builders.ProdutoBuilder;
 import com.study.projeto.domain.dao.impl.produto.IProdutoDAO;
 import com.study.projeto.domain.dao.impl.produto.ImplProdutoDatabase3DAO;
-import com.study.projeto.domain.model.Produto;
+import com.study.projeto.domain.model.relational.Produto;
 import com.study.projeto.exceptions.DAOException;
 import com.study.projeto.exceptions.RegistroNaoEncontradoException;
 import com.study.projeto.util.GeradorCodigo;
@@ -15,11 +15,11 @@ import org.junit.After;
 import org.junit.Assert;
 import org.junit.Test;
 
-public class IProdutoDatabase3DAOTest {
+public class IProdutoDAODatabase3Test {
 
   private IProdutoDAO dao;
 
-  public IProdutoDatabase3DAOTest() {
+  public IProdutoDAODatabase3Test() {
     dao = new ImplProdutoDatabase3DAO();
   }
 

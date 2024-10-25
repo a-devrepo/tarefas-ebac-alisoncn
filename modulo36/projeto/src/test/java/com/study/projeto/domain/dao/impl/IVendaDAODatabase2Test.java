@@ -7,15 +7,15 @@ import com.study.projeto.domain.builders.EnderecoBuilder;
 import com.study.projeto.domain.builders.ProdutoBuilder;
 import com.study.projeto.domain.builders.VendaBuilder;
 import com.study.projeto.domain.dao.impl.cliente.IClienteDAO;
-import com.study.projeto.domain.dao.impl.cliente.ImplClienteDatabase1DAO;
+import com.study.projeto.domain.dao.impl.cliente.ImplClienteDatabase2DAO;
 import com.study.projeto.domain.dao.impl.produto.IProdutoDAO;
-import com.study.projeto.domain.dao.impl.produto.ImplProdutoDatabase1DAO;
+import com.study.projeto.domain.dao.impl.produto.ImplProdutoDatabase2DAO;
 import com.study.projeto.domain.dao.impl.venda.IVendaDAO;
-import com.study.projeto.domain.dao.impl.venda.ImplVendaDatabase1DAO;
-import com.study.projeto.domain.model.Cliente;
-import com.study.projeto.domain.model.Endereco;
-import com.study.projeto.domain.model.Produto;
-import com.study.projeto.domain.model.Venda;
+import com.study.projeto.domain.dao.impl.venda.ImplVendaDatabase2DAO;
+import com.study.projeto.domain.model.relational.Cliente;
+import com.study.projeto.domain.model.relational.Endereco;
+import com.study.projeto.domain.model.relational.Produto;
+import com.study.projeto.domain.model.relational.Venda;
 import com.study.projeto.enums.StatusCliente;
 import com.study.projeto.enums.StatusVenda;
 import com.study.projeto.exceptions.DAOException;
@@ -30,7 +30,7 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-public class IVendaDatabase1DAOTest {
+public class IVendaDAODatabase2Test {
 
   private IVendaDAO vendaDAO;
   private IClienteDAO clienteDAO;
@@ -38,10 +38,10 @@ public class IVendaDatabase1DAOTest {
   private Cliente cliente;
   private Produto produto;
 
-  public IVendaDatabase1DAOTest() {
-    vendaDAO = new ImplVendaDatabase1DAO();
-    clienteDAO = new ImplClienteDatabase1DAO();
-    produtoDAO = new ImplProdutoDatabase1DAO();
+  public IVendaDAODatabase2Test() {
+    vendaDAO = new ImplVendaDatabase2DAO();
+    clienteDAO = new ImplClienteDatabase2DAO();
+    produtoDAO = new ImplProdutoDatabase2DAO();
   }
 
   @Before

@@ -1,6 +1,6 @@
 package com.study.projeto.domain.builders;
 
-import com.study.projeto.domain.model.Endereco;
+import com.study.projeto.domain.model.relational.Endereco;
 
 public class EnderecoBuilder {
 
