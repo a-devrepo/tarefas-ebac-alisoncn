@@ -1,0 +1,268 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+<f:view>
+   <h:head>
+      <h:outputStylesheet>
+         th, td {
+            text-align: center;
+         }
+
+         h3 {
+            margin-top: 0;
+            text-align: center;
+         }
+
+         input[type="text"] {
+            width: 100%;
+            box-sizing: border-box;
+            -webkit-box-sizing:border-box;
+            -moz-box-sizing: border-box;
+         }
+
+      </h:outputStylesheet>
+   </h:head>
+   <h:body>
+      <h:form id="menu">
+         <p:menubar>
+            <p:submenu label="Cadastro" icon="pi pi-fw pi-user">
+               <p:menuitem value="Cliente" icon="pi pi-fw pi-user-plus" action="#{indexBean.redirectCliente()}"/>
+               <p:menuitem value="Produto" icon="pi pi-fw pi-inbox" action="#{indexBean.redirectProduto()}"/>
+            </p:submenu>
+            <p:submenu label="Venda" icon="pi pi-fw pi-shopping-cart">
+               <p:menuitem value="Venda" icon="pi pi-fw pi-shopping-cart" action="#{indexBean.redirectVenda()}"/>
+            </p:submenu>
+         </p:menubar>
+      </h:form>
+      <p:outputPanel>
+         <h3>Vendas cadastradas</h3>
+         <div class="ui-g">
+            <div class="ui-g-2" />
+            <div class="ui-g-12">
+               <h:form id="vendas">
+                  <p:growl id="tablemessages" sticky="true" showSummary="true" showDetail="true">
+                     <p:autoUpdate />
+                  </p:growl>
+
+                  <p:dataTable id="vendaList" var="venda"
+                               value="#{vendaBean.vendas}">
+                     <p:column headerText="Id">
+                        <h:outputText value="#{venda.id}" />
+                     </p:column>
+
+                     <p:column headerText="Codigo">
+                        <h:outputText id="codigoInput" value="#{venda.codigo}" />
+                     </p:column>
+
+                     <p:column headerText="Nome cliente">
+                        <h:outputText id="nomeInput" value="#{venda.cliente.nome}" />
+                     </p:column>
+
+                     <p:column headerText="Data da venda">
+                        <h:outputText id="dataInput" value="#{venda.dataVenda}" />
+                     </p:column>
+
+                     <p:column headerText="Valor Total">
+                        R$ <h:outputText id="valorInput" value="#{venda.valorTotal}" />
+                     </p:column>
+
+                     <p:column headerText="Status">
+                        <h:outputText id="statusInput" value="#{venda.statusVenda}" />
+                     </p:column>
+
+                     <p:column>
+                        <p:commandButton update="vendaList add title" value="Editar"
+                                         icon="ui-icon-closethick"
+                                         action="#{vendaBean.edit(venda)}"
+                                         styleClass="ui-icon-pencil"
+                                         rendered="#{venda.statusVenda.name().equals('INICIADA')}">
+                        </p:commandButton>
+                     </p:column>
+                     <p:column>
+                        <p:commandButton update="@form :vendas add" value="Cancelar"
+                                         icon="ui-icon-closethick"
+                                         action="#{vendaBean.delete(venda)}"
+                                         styleClass="ui-priority-primary"
+                                         rendered="#{venda.statusVenda.name().equals('INICIADA')}">
+                           <p:confirm header="Atenção" message="Tem certeza que deseja cancelar esta venda?" icon="pi pi-exclamation-triangle"/>
+                        </p:commandButton>
+                     </p:column>
+                     <p:column>
+                        <p:commandButton update="@form :vendas add" value="Finalizar"
+                                         icon="ui-icon-closethick"
+                                         action="#{vendaBean.finalizar(venda)}"
+                                         styleClass="ui-priority-primary"
+                                         rendered="#{venda.statusVenda.name().equals('INICIADA')}">
+                           <p:confirm header="Atenção" message="Tem certeza que deseja finalizar esta venda?" icon="pi pi-exclamation-triangle"/>
+                        </p:commandButton>
+                     </p:column>
+                  </p:dataTable>
+                  <br />
+                  <p:confirmDialog id="confirmDialog" global="true" showEffect="fade" hideEffect="fade" responsive="true" width="350px">
+                     <p:commandButton value="Não" type="button" styleClass="ui-confirmdialog-no ui-button-flat"/>
+                     <p:commandButton value="Sim" type="button" styleClass="ui-confirmdialog-yes" />
+                  </p:confirmDialog>
+               </h:form>
+            </div>
+            <div class="ui-g-2"></div>
+         </div>
+         <div align="center"><h:outputText
+                 id="title"  value="#{!vendaBean.isUpdate?'Criar Venda':'Atualizar Venda'}"/></div>
+         <div class="ui-g">
+            <div class="ui-g-2"></div>
+            <div class="ui-g-8">
+               <h:form id="add">
+                  <div class="ui-fluid p-grid p-formgrid">
+                     <div class="ui-fluid p-grid p-formgrid">
+
+                        <div class="p-field p-col-12 p-md-4">
+                           <p:outputLabel for="Codigo" value="Codigo" />
+                           <p:inputText id="Codigo"
+                                        value="#{vendaBean.venda.codigo}" required="true" />
+                           <p:message for="Codigo" />
+                        </div>
+
+                        <div class="p-field p-col-12 p-md-4">
+                           <p:outputLabel for="cliente" value="Cliente" />
+                           <p:autoComplete id="cliente" value="#{vendaBean.venda.cliente}"
+                                           completeMethod="#{vendaBean.filtrarClientes}" scrollHeight="250"
+                                           var="cliente" itemLabel="#{cliente.nome}" itemValue="#{cliente}"
+                                           converter="clienteConverter" forceSelection="true" required="true"/>
+                           <p:message for="cliente"/>
+                        </div>
+
+                        <div class="p-field p-col-12 p-md-4">
+                           <p:outputLabel for="data" value="Data da venda" />
+                           <p:datePicker id="data" value="#{vendaBean.dataVenda}" />
+                           <p:message for="data" />
+                        </div>
+
+                        <div class="p-field p-col-12 p-md-12">
+                           <p:commandLink id="ajax" action="#{vendaBean.voltarTelaInicial()}"
+                                          style="margin-right:20px;" ajax="false" immediate="true">
+                              <h:outputText value="Voltar"/>
+                           </p:commandLink>
+                           <p:commandButton update="@form :vendas"
+                                            value="Cadastrar" action="#{vendaBean.add}"
+                                            rendered="#{!vendaBean.isUpdate}">
+                           </p:commandButton>
+                           <p:commandButton update="@form :vendas:vendaList title"
+                                            value="Atualizar" action="#{vendaBean.update}"
+                                            rendered="#{vendaBean.isUpdate}">
+                           </p:commandButton>
+                           <p:commandButton update="@form :vendas:vendaList title"
+                                            value="Cancelar" action="#{vendaBean.cancel}"
+                                            immediate="true">
+                              <f:ajax render="add" resetValues="true"/>
+                           </p:commandButton>
+                        </div>
+                     </div>
+                  </div>
+                  <br/><br/>
+                  <p:panel header="Produtos">
+                     <div class="p-field p-col-12 p-md-4">
+                        <p:outputLabel for="produto" value="Produto" />
+                        <p:autoComplete id="produto" value="#{vendaBean.produtoSelecionado}"
+                                        completeMethod="#{vendaBean.filtrarProdutos}" scrollHeight="250"
+                                        var="produto" itemLabel="#{produto.nome}" itemValue="#{produto}"
+                                        converter="produtoConverter" forceSelection="true"
+                                        emptyMessage="Não encontramos nenhum registro com este nome"/>
+
+                        <p:outputLabel for="vertical" value="Quantidade"/>
+                        <p:spinner id="vertical" min="1" value="#{vendaBean.quantidadeProduto}" buttons="vertical"
+                                   upButtonStyleClass="ui-button-secondary" downButtonStyleClass="ui-button-secondary"/>
+
+                        <p:commandButton update="@form :add:produtos"
+                                         value="Adicionar" action="#{vendaBean.adicionarProduto}">
+                        </p:commandButton>
+                        <p:commandButton update="@form :add:produtos"
+                                         value="Remover" action="#{vendaBean.removerProduto}">
+                        </p:commandButton>
+                     </div>
+
+                     <p:dataTable id="produtos" var="prod" value="#{vendaBean.produtos}" editable="true"
+                                  style="margin-bottom:20px">
+
+                        <!-- <p:ajax event="rowEdit" listener="#{vendaController.onRowEdit}" update="@form "/>
+                       <p:ajax  -->event="rowEditCancel" listener="#{vendaBean.onRowCancel}" update="@form "/>
+
+                        <p:column headerText="Codigo">
+                           <h:outputText value="#{prod.produto.codigo}" />
+                        </p:column>
+
+                        <p:column headerText="Nome">
+                           <h:outputText value="#{prod.produto.nome}" />
+                        </p:column>
+
+                        <p:column headerText="Quantidade">
+                           <h:outputText value="#{prod.quantidade}" />
+                        </p:column>
+
+                        <!-- <p:column headerText="Quantidade">
+                            <p:cellEditor>
+                                <f:facet name="output">
+                                    <h:outputText value="#{prod.quantidade}"/>
+                                </f:facet>
+                                <f:facet name="input">
+                                    <p:inputText id="quantidadeInput" value="#{prod.quantidade}" style="width:100%"/>
+                                    <p:outputLabel for="vertical" value="Quantidade"/>
+                                    <p:spinner id="vertical" value="#{vendaController.quantidadeProduto}" buttons="vertical"
+                                               upButtonStyleClass="ui-button-secondary" downButtonStyleClass="ui-button-secondary"/>
+                                </f:facet>
+                            </p:cellEditor>
+                        </p:column> -->
+
+                        <p:column headerText="Valor Unitário">
+                           <h:outputText value="#{prod.produto.valor}" />
+                        </p:column>
+
+                        <p:column headerText="Valor Total">
+                           <h:outputText value="#{prod.valorTotal}" />
+                        </p:column>
+
+                        <!-- <p:column style="width:6rem">
+                            <p:rowEditor editTitle="Editar" cancelTitle="Cancelar" saveTitle="Salvar"/>
+                        </p:column> -->
+                        <p:column>
+                           <p:commandButton update="@form :add:produtos" value="Delete"
+                                            icon="ui-icon-closethick"
+                                            action="#{vendaBean.removerProduto(prod)}"
+                                            styleClass="ui-priority-primary">
+                              <p:confirm header="Atenção" message="Tem certeza que deseja excluir este produto" icon="pi pi-exclamation-triangle"/>
+                           </p:commandButton>
+                        </p:column>
+
+                        <p:columnGroup type="footer">
+                           <p:row>
+                              <p:column colspan="4" style="text-align:right" footerText="Total:"/>
+                              <p:column>
+                                 <f:facet name="footer">
+                                    <h:outputText value="#{vendaBean.valorTotal}">
+                                       <f:convertNumber type="currency" currencySymbol="R$"/>
+                                    </h:outputText>
+                                 </f:facet>
+                              </p:column>
+                           </p:row>
+                        </p:columnGroup>
+
+                     </p:dataTable>
+                  </p:panel>
+                  <br />
+                  <p:confirmDialog global="true" showEffect="fade" hideEffect="fade" responsive="true" width="350">
+                     <p:commandButton value="Não" type="button" styleClass="ui-confirmdialog-no ui-button-flat"/>
+                     <p:commandButton value="Sim" type="button" styleClass="ui-confirmdialog-yes" />
+                  </p:confirmDialog>
+
+               </h:form>
+            </div>
+            <div class="ui-g-2"></div>
+         </div>
+      </p:outputPanel>
+   </h:body>
+</f:view>
+</html>

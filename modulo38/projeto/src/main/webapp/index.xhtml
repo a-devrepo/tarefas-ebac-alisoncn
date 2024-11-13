@@ -1,0 +1,27 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://primefaces.org/ui">
+
+<h:head>
+
+</h:head>
+
+<h:body>
+    <p:outputLabel value="Olá Bem vindo a loja online"/>
+    <h:form id="menu">
+        <p:menubar>
+            <p:submenu label="Cadastro" icon="pi pi-fw pi-user">
+                <p:menuitem value="Cliente" icon="pi pi-fw pi-user-plus" action="#{indexBean.redirectCliente()}"/>
+                <p:menuitem value="Produto" icon="pi pi-fw pi-inbox" action="#{indexBean.redirectProduto()}"/>
+            </p:submenu>
+            <p:submenu label="Venda" icon="pi pi-fw pi-shopping-cart">
+                <p:menuitem value="Venda" icon="pi pi-fw pi-shopping-cart" action="#{indexBean.redirectVenda()}"/>
+            </p:submenu>
+        </p:menubar>
+    </h:form>
+    <br/>
+</h:body>
+</html>
