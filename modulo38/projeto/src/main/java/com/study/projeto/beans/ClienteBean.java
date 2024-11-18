@@ -49,13 +49,15 @@ public class ClienteBean implements Serializable {
 
     }
 
-    private void criarCliente() {
+    public void criarCliente() {
         this.cliente = new Cliente();
         this.cliente.setEndereco(new Endereco());
     }
 
     public void cancel() {
         this.isUpdate = false;
+        this.cliente = new Cliente();
+        this.cliente.setEndereco(new Endereco());
     }
 
     public String add() {

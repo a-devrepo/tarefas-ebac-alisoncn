@@ -170,10 +170,10 @@
                                              value="Atualizar" action="#{clienteBean.update()}"
                                              rendered="#{clienteBean.isUpdate}">
                             </p:commandButton>
-                            <p:commandButton update="add"
-                                             value="Cancelar" action="#{clienteBean.cancel}"
+                            <p:commandButton update="@form :add"
+                                             value="Cancelar" action="#{clienteBean.cancel()}"
                                              immediate="true">
-                                <f:ajax render="add" resetValues="true"/>
+                                <f:ajax render="@form :add" resetValues="true"/>
                             </p:commandButton>
                         </h:panelGrid>
                         <!-- <h:messages errorStyle="color:red;margin:8px;"></h:messages> -->
