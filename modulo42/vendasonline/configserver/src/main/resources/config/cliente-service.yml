@@ -1,7 +1,6 @@
 server:
-  port: 8081
+  port: 8084
   wait-time-in-ms-when-sync-empty: 3000
-
 spring:
   spring:
     profiles:
@@ -11,5 +10,4 @@ spring:
       uri: mongodb://admin:admin@127.0.0.1:27017/vendasonline?authSource=admin&retryWrites=true&w=majority
       database: cliente
       auto-index-creation: true
-
 application-version: 1.0
