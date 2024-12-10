@@ -1,0 +1,10 @@
+spring:
+  application:
+    name: produto-service
+  config:
+    import: configserver:http://localhost:8888
+springdoc:
+  api-docs:
+    path: /produtoservice/api-docs
+  swagger-ui:
+    path: /produtoservice/swagger-ui.html
