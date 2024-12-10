@@ -12,6 +12,8 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Collection;
+
 @RestController
 @RequestMapping(value = "/cliente")
 @Tag(name = "Cliente Endpoint")
@@ -42,6 +44,15 @@ public class ClienteResource {
     public ResponseEntity<Boolean> isCadastrado(@PathVariable(value = "id", required = true) Long id)
             throws DAOException {
         return ResponseEntity.ok(clienteService.isCadastrado(id));
+    }
+
+    @GetMapping(value = "/{campo}/{valor}")
+    @Operation(summary = "Busca um cliente por parâmetro e valor")
+    public ResponseEntity<Collection<Cliente>> filtrarClientesPor(
+            @PathVariable(value = "campo", required = true) String campo
+            , @PathVariable(value = "valor", required = true) String valor) throws DAOException {
+        Collection<Cliente> list = clienteService.filtrarProdutosPor(campo, valor);
+        return ResponseEntity.ok(list);
     }
 
     @PostMapping

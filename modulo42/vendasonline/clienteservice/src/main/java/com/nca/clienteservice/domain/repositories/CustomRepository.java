@@ -6,6 +6,8 @@ import com.nca.clienteservice.exceptions.RegistroNaoEncontradoException;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
+import java.util.Collection;
+
 public interface CustomRepository {
 
     Page<Cliente> listar(Pageable pageable) throws DAOException;
@@ -17,4 +19,6 @@ public interface CustomRepository {
     void excluir(Long id) throws DAOException;
 
     Cliente atualizar(Cliente entity) throws DAOException;
+
+    public Collection<Cliente> filtrarPor(String param, String value) throws DAOException;
 }

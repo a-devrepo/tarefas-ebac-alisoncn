@@ -30,6 +30,11 @@ public class ClienteService {
         return this.repository.buscar(id);
     }
 
+    public Collection<Cliente> filtrarProdutosPor(String param, String value) throws DAOException {
+        Collection<Cliente> clientes = repository.filtrarPor(param, value);
+        return clientes;
+    }
+
     public Cliente buscarPorCpf(String cpf) throws DAOException, RegistroNaoEncontradoException {
         Optional<Cliente> cliente = this.repository.findByCpf(cpf);
         if (!cliente.isPresent()) {

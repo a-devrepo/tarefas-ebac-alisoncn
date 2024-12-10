@@ -12,6 +12,7 @@ import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.data.mongodb.core.query.Update;
 import org.springframework.data.support.PageableExecutionUtils;
 
+import java.util.Collection;
 import java.util.List;
 
 public class CustomRepositoryImpl implements CustomRepository {
@@ -64,6 +65,18 @@ public class CustomRepositoryImpl implements CustomRepository {
             throw new RegistroNaoEncontradoException("Registro não encontrado");
         }
         return cliente;
+    }
+
+    public Collection<Cliente> filtrarPor(String param, String value) throws DAOException {
+        try {
+            Query query = new Query();
+            query.addCriteria(
+                    Criteria.where("param").is(value));
+            List<Cliente> clientes = mongoTemplate.find(query, Cliente.class, "cliente");
+            return clientes;
+        } catch (Exception e) {
+            throw new DAOException("Erro ao buscar registros", e);
+        }
     }
 
     @Override
