@@ -9,20 +9,25 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.annotation.Transient;
 import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.data.mongodb.core.mapping.Field;
 
 import java.math.BigDecimal;
 
 @Document(collection = "produto")
 @Getter
 @Setter
-@AllArgsConstructor
 @Builder
 @Schema(name = "Produto", description = "Produto")
 public class Produto {
+
+    @Transient
+    public static final String SEQUENCE_NAME = "produto_sequence";
+
     @Id
     @Schema(description = "Identificador único")
-    private Long id;
+    private String id;
 
     @NotNull
     @Size(min = 1, max = 50)
@@ -48,7 +53,23 @@ public class Produto {
     @Schema(description = "valor", nullable = false)
     private BigDecimal valor;
 
-    @NotNull
     @Schema(description = "Status Registro")
+    @Field(name = "status_registro")
     private StatusRegistro statusRegistro;
+
+    public Produto() {
+        this.statusRegistro = StatusRegistro.ATIVO;
+    }
+
+    public Produto(String id, String codigo, String nome, String descricao
+            , String fabricante, BigDecimal valor, StatusRegistro statusRegistro) {
+        super();
+        this.id = id;
+        this.codigo = codigo;
+        this.nome = nome;
+        this.descricao = descricao;
+        this.fabricante = fabricante;
+        this.valor = valor;
+        this.statusRegistro = statusRegistro;
+    }
 }

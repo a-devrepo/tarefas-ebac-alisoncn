@@ -25,7 +25,7 @@ public class ProdutoService {
         return this.repository.listar(pageable);
     }
 
-    public Produto buscar(Long id) throws DAOException, RegistroNaoEncontradoException {
+    public Produto buscar(String id) throws DAOException, RegistroNaoEncontradoException {
         return this.repository.buscar(id);
     }
 
@@ -42,7 +42,7 @@ public class ProdutoService {
         return this.repository.atualizar(produto);
     }
 
-    public void remover(Long id) throws DAOException {
+    public void remover(String id) throws DAOException {
         this.repository.excluir(id);
     }
 }

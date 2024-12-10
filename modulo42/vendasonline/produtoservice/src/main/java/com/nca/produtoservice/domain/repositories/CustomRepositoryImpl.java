@@ -1,11 +1,13 @@
 package com.nca.produtoservice.domain.repositories;
 
 import com.nca.produtoservice.domain.model.Produto;
+import com.nca.produtoservice.domain.services.SequenceGeneratorService;
 import com.nca.produtoservice.enums.StatusRegistro;
 import com.nca.produtoservice.exceptions.DAOException;
 import com.nca.produtoservice.exceptions.RegistroNaoEncontradoException;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.mongodb.core.FindAndModifyOptions;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
@@ -19,8 +21,11 @@ public class CustomRepositoryImpl implements CustomRepository {
 
     private final MongoTemplate mongoTemplate;
 
-    public CustomRepositoryImpl(MongoTemplate mongoTemplate) {
+    private SequenceGeneratorService sequenceGeneratorService;
+
+    public CustomRepositoryImpl(MongoTemplate mongoTemplate, SequenceGeneratorService sequenceGeneratorService) {
         this.mongoTemplate = mongoTemplate;
+        this.sequenceGeneratorService = sequenceGeneratorService;
     }
 
     @Override
@@ -29,7 +34,7 @@ public class CustomRepositoryImpl implements CustomRepository {
             Query query = new Query();
             query.with(pageable);
             query.addCriteria(Criteria
-                    .where("statusRegistro").is(StatusRegistro.ATIVO));
+                    .where("status_registro").is(StatusRegistro.ATIVO));
             List<Produto> produtos = mongoTemplate.find(query, Produto.class);
             return createPage(pageable, produtos, query);
         } catch (Exception e) {
@@ -44,6 +49,8 @@ public class CustomRepositoryImpl implements CustomRepository {
     @Override
     public Produto salvar(Produto entity) throws DAOException {
         try {
+            String id = String.valueOf(sequenceGeneratorService.generateSequence(Produto.SEQUENCE_NAME));
+            entity.setId(id);
             return mongoTemplate.save(entity);
         } catch (Exception e) {
             throw new DAOException("Erro ao salvar registro:", e);
@@ -51,13 +58,14 @@ public class CustomRepositoryImpl implements CustomRepository {
     }
 
     @Override
-    public Produto buscar(Long code) throws RegistroNaoEncontradoException, DAOException {
+    public Produto buscar(String code) throws RegistroNaoEncontradoException, DAOException {
         Produto produto = null;
         try {
             Query query = new Query();
-            query.addCriteria(Criteria.where("code")
-                    .is(code).and("statusRegistro").is(StatusRegistro.ATIVO));
-            produto = mongoTemplate.findById(code, Produto.class);
+            query.addCriteria(Criteria.where("id").is(code).and("status_registro").is(StatusRegistro.ATIVO));
+            List<Produto> list = mongoTemplate.find(query, Produto.class);
+            if (!list.isEmpty())
+                produto = list.get(0);
         } catch (Exception e) {
             throw new DAOException("Erro ao buscar registro", e);
         }
@@ -71,7 +79,7 @@ public class CustomRepositoryImpl implements CustomRepository {
         try {
             Query query = new Query();
             query.addCriteria(
-                    Criteria.where("param").is(value));
+                    Criteria.where(param).regex(value).and("status_registro").is(StatusRegistro.ATIVO));
             List<Produto> produtos = mongoTemplate.find(query, Produto.class, "produto");
             return produtos;
         } catch (Exception e) {
@@ -80,7 +88,7 @@ public class CustomRepositoryImpl implements CustomRepository {
     }
 
     @Override
-    public void excluir(Long id) throws DAOException {
+    public void excluir(String id) throws DAOException {
         try {
             Query query = new Query();
             query.addCriteria(Criteria.where("id").is(id));
@@ -105,8 +113,8 @@ public class CustomRepositoryImpl implements CustomRepository {
             update.set("fabricante", entity.getFabricante());
             update.set("statusRegistro", entity.getStatusRegistro());
             update.set("valor", entity.getValor());
-            Produto produto = mongoTemplate.findAndModify(query, update, Produto.class);
-            return produto;
+            return mongoTemplate.findAndModify(query, update,
+                    FindAndModifyOptions.options().returnNew(true), Produto.class);
         } catch (Exception e) {
             throw new DAOException("Erro ao atualizar registro", e);
         }

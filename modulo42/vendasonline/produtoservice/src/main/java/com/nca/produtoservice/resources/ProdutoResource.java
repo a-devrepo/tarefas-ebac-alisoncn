@@ -34,12 +34,12 @@ public class ProdutoResource {
 
     @GetMapping(value = "/{id}")
     @Operation(summary = "Busca um produto por id")
-    public ResponseEntity<Produto> buscarPorId(@PathVariable(value = "id", required = true) Long id)
+    public ResponseEntity<Produto> buscarPorId(@PathVariable(value = "id", required = true) String id)
             throws DAOException {
         return ResponseEntity.ok(produtoService.buscar(id));
     }
 
-    @GetMapping(value = "/{campo}/{valor}")
+    @GetMapping(value = "filtrar/{campo}/{valor}")
     @Operation(summary = "Busca um produto por parâmetro e valor")
     public ResponseEntity<Collection<Produto>> filtrarProdutosPor(
             @PathVariable(value = "campo", required = true) String campo
@@ -62,7 +62,7 @@ public class ProdutoResource {
 
     @DeleteMapping(value = "/{id}")
     @Operation(summary = "Remove um Produto pelo seu id")
-    public ResponseEntity<Void> remover(@PathVariable(value = "id", required = true) Long id) {
+    public ResponseEntity<Void> remover(@PathVariable(value = "id", required = true) String id) {
         produtoService.remover(id);
         return ResponseEntity.ok().build();
     }

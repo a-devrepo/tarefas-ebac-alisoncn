@@ -13,9 +13,9 @@ public interface CustomRepository {
 
     Produto salvar(Produto entity) throws DAOException;
 
-    Produto buscar(Long code) throws RegistroNaoEncontradoException, DAOException;
+    Produto buscar(String code) throws RegistroNaoEncontradoException, DAOException;
 
-    void excluir(Long id) throws DAOException;
+    void excluir(String id) throws DAOException;
 
     Produto atualizar(Produto entity) throws DAOException;
 
