@@ -4,8 +4,10 @@ import com.nca.clienteservice.domain.model.Cliente;
 import com.nca.clienteservice.enums.StatusRegistro;
 import com.nca.clienteservice.exceptions.DAOException;
 import com.nca.clienteservice.exceptions.RegistroNaoEncontradoException;
+import com.nca.clienteservice.domain.services.SequenceGeneratorService;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.mongodb.core.FindAndModifyOptions;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
@@ -18,9 +20,11 @@ import java.util.List;
 public class CustomRepositoryImpl implements CustomRepository {
 
     private final MongoTemplate mongoTemplate;
+    private SequenceGeneratorService sequenceGeneratorService;
 
-    public CustomRepositoryImpl(MongoTemplate mongoTemplate) {
+    public CustomRepositoryImpl(MongoTemplate mongoTemplate, SequenceGeneratorService sequenceGeneratorService) {
         this.mongoTemplate = mongoTemplate;
+        this.sequenceGeneratorService = sequenceGeneratorService;
     }
 
     @Override
@@ -44,6 +48,8 @@ public class CustomRepositoryImpl implements CustomRepository {
     @Override
     public Cliente salvar(Cliente entity) throws DAOException {
         try {
+            String id = String.valueOf(sequenceGeneratorService.generateSequence(Cliente.SEQUENCE_NAME));
+            entity.setId(id);
             return mongoTemplate.save(entity);
         } catch (Exception e) {
             throw new DAOException("Erro ao salvar registro:", e);
@@ -51,13 +57,15 @@ public class CustomRepositoryImpl implements CustomRepository {
     }
 
     @Override
-    public Cliente buscar(Long code) throws RegistroNaoEncontradoException, DAOException {
+    public Cliente buscar(String code) throws RegistroNaoEncontradoException, DAOException {
         Cliente cliente = null;
         try {
             Query query = new Query();
-            query.addCriteria(Criteria.where("code")
-                    .is(code).and("statusRegistro").is(StatusRegistro.ATIVO));
-            cliente = mongoTemplate.findById(code, Cliente.class);
+            query.addCriteria(Criteria.where("id").is(code).and("status_registro").is(StatusRegistro.ATIVO));
+            List<Cliente> list = mongoTemplate.find(query, Cliente.class);
+            if (!list.isEmpty()) {
+                cliente = list.get(0);
+            }
         } catch (Exception e) {
             throw new DAOException("Erro ao buscar registro", e);
         }
@@ -71,7 +79,7 @@ public class CustomRepositoryImpl implements CustomRepository {
         try {
             Query query = new Query();
             query.addCriteria(
-                    Criteria.where("param").is(value));
+                    Criteria.where(param).is(value));
             List<Cliente> clientes = mongoTemplate.find(query, Cliente.class, "cliente");
             return clientes;
         } catch (Exception e) {
@@ -80,7 +88,7 @@ public class CustomRepositoryImpl implements CustomRepository {
     }
 
     @Override
-    public void excluir(Long id) throws DAOException {
+    public void excluir(String id) throws DAOException {
         try {
             Query query = new Query();
             query.addCriteria(Criteria.where("id").is(id));
@@ -105,7 +113,8 @@ public class CustomRepositoryImpl implements CustomRepository {
             update.set("endereco", entity.getEndereco());
             update.set("status", entity.getStatus());
             update.set("statusRegistro", entity.getStatusRegistro());
-            Cliente cliente = mongoTemplate.findAndModify(query, update, Cliente.class);
+            Cliente cliente = mongoTemplate.findAndModify(query, update,
+                    FindAndModifyOptions.options().returnNew(true), Cliente.class);
             return cliente;
         } catch (Exception e) {
             throw new DAOException("Erro ao excluir registro", e);

@@ -26,7 +26,7 @@ public class ClienteService {
         return this.repository.listar(pageable);
     }
 
-    public Cliente buscar(Long id) throws DAOException, RegistroNaoEncontradoException {
+    public Cliente buscar(String id) throws DAOException, RegistroNaoEncontradoException {
         return this.repository.buscar(id);
     }
 
@@ -51,7 +51,7 @@ public class ClienteService {
         return this.repository.atualizar(cliente);
     }
 
-    public void remover(Long id) throws DAOException {
+    public void remover(String id) throws DAOException {
         this.repository.excluir(id);
     }
 

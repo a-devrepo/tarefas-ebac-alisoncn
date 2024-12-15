@@ -34,7 +34,7 @@ public class ClienteResource {
 
     @GetMapping(value = "/{id}")
     @Operation(summary = "Busca um cliente por id")
-    public ResponseEntity<Cliente> buscarPorId(@PathVariable(value = "id", required = true) Long id)
+    public ResponseEntity<Cliente> buscarPorId(@PathVariable(value = "id", required = true) String id)
             throws DAOException {
         return ResponseEntity.ok(clienteService.buscar(id));
     }
@@ -75,7 +75,7 @@ public class ClienteResource {
 
     @DeleteMapping(value = "/{id}")
     @Operation(summary = "Remove um Cliente pelo seu id")
-    public ResponseEntity<Void> remover(@PathVariable(value = "id", required = true) Long id) {
+    public ResponseEntity<Void> remover(@PathVariable(value = "id", required = true) String id) {
         clienteService.remover(id);
         return ResponseEntity.ok().build();
     }

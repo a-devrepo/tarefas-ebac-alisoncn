@@ -14,9 +14,9 @@ public interface CustomRepository {
 
     Cliente salvar(Cliente entity) throws DAOException;
 
-    Cliente buscar(Long code) throws RegistroNaoEncontradoException, DAOException;
+    Cliente buscar(String code) throws RegistroNaoEncontradoException, DAOException;
 
-    void excluir(Long id) throws DAOException;
+    void excluir(String id) throws DAOException;
 
     Cliente atualizar(Cliente entity) throws DAOException;
 
