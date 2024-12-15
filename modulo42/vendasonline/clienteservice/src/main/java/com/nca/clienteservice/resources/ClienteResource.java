@@ -46,7 +46,7 @@ public class ClienteResource {
         return ResponseEntity.ok(clienteService.isCadastrado(id));
     }
 
-    @GetMapping(value = "/{campo}/{valor}")
+    @GetMapping(value = "filtrar/{campo}/{valor}")
     @Operation(summary = "Busca um cliente por parâmetro e valor")
     public ResponseEntity<Collection<Cliente>> filtrarClientesPor(
             @PathVariable(value = "campo", required = true) String campo
