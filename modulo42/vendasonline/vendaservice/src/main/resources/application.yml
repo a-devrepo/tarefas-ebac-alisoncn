@@ -1,0 +1,12 @@
+spring:
+  application:
+    name: vendas-service
+  config:
+    import: configserver:http://localhost:8888
+  autoconfigure:
+    exclude: org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration
+springdoc:
+  api-docs:
+    path: /vendaservice/api-docs
+  swagger-ui:
+    path: /vendaservice/swagger-ui.html

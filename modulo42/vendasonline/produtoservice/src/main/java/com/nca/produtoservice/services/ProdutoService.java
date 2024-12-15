@@ -14,7 +14,7 @@ import java.util.Collection;
 @Service
 public class ProdutoService {
 
-    private IProdutoCustomRepository repository;
+    private final IProdutoCustomRepository repository;
 
     @Autowired
     public ProdutoService(IProdutoCustomRepository repository) {
@@ -30,8 +30,7 @@ public class ProdutoService {
     }
 
     public Collection<Produto> filtrarProdutosPor(String param, String value) throws DAOException {
-        Collection<Produto> produtos = repository.filtrarPor(param, value);
-        return produtos;
+        return repository.filtrarPor(param, value);
     }
 
     public Produto cadastrar(Produto produto) throws DAOException {
