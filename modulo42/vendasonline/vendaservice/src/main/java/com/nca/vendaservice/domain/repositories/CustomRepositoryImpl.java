@@ -54,8 +54,10 @@ public class CustomRepositoryImpl implements CustomRepository {
             verificarDuplicidade(entity);
             String id = String.valueOf(sequenceGeneratorService.generateSequence(Venda.SEQUENCE_NAME));
             entity.setId(id);
-            entity.getItens().forEach(item -> item.setId(
-                    String.valueOf(sequenceGeneratorService.generateSequence(Venda.SEQUENCE_NAME))));
+            entity.getItens().forEach(item ->
+            {
+                item.setId(String.valueOf(sequenceGeneratorService.generateSequence(ItemVenda.SEQUENCE_NAME)));
+            });
             return mongoTemplate.save(entity);
         } catch (RegistroDuplicadoException e) {
             throw new DAOException(e.getMessage());

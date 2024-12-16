@@ -26,12 +26,10 @@ public class ItemVenda {
     private String id;
 
     @DBRef
-    @NotNull
     @Schema(description = "Produto")
     private Produto produto;
 
     @DBRef
-    @NotNull
     @Schema(description = "Venda")
     private Venda venda;
 

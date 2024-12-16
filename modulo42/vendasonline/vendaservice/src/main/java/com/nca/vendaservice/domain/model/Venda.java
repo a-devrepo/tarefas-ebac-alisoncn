@@ -20,6 +20,7 @@ import org.springframework.data.mongodb.core.mapping.Field;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.time.Instant;
+import java.util.HashSet;
 import java.util.Optional;
 import java.util.Set;
 
@@ -41,9 +42,9 @@ public class Venda {
     private String codigo;
 
     @Schema(description = "Cliente")
+    @DBRef
     private Cliente cliente;
 
-    @DBRef(lazy = true)
     private Set<ItemVenda> itens;
 
     @NotNull
@@ -66,6 +67,7 @@ public class Venda {
     public Venda() {
         this.statusRegistro = StatusRegistro.ATIVO;
         this.statusVenda = StatusVenda.INICIADA;
+        this.itens = new HashSet<>();
     }
 
     public Venda(String id, String codigo, Cliente cliente, Set<ItemVenda> itens
@@ -251,7 +253,7 @@ public class Venda {
         }
     }
 
-    public Integer getQuantidadeTotalProdutos() {
+    public Integer informarQuantidadeTotalProdutos() {
         int total =
                 itens.stream()
                         .reduce(0

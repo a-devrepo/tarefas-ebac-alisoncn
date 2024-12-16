@@ -1,6 +1,11 @@
 package com.nca.vendaservice.exceptions;
 
-public class DAOException extends Exception {
+import java.io.Serial;
+
+public class DAOException extends RuntimeException {
+  @Serial
+  private static final long serialVersionUID = 8715431204217692133L;
+
   public DAOException(String msg) {
     super(msg);
   }
