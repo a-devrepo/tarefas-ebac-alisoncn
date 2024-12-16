@@ -1,0 +1,400 @@
+{
+	"info": {
+		"_postman_id": "887194cc-7777-41ef-88ff-dd55a2898c1f",
+		"name": "VENDASONLINE",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "28016497"
+	},
+	"item": [
+		{
+			"name": "PRODUTOSERVICE",
+			"item": [
+				{
+					"name": "LIST PRODUTOS",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8082/produto?size=10&page=0",
+							"host": [
+								"localhost"
+							],
+							"port": "8082",
+							"path": [
+								"produto"
+							],
+							"query": [
+								{
+									"key": "size",
+									"value": "10"
+								},
+								{
+									"key": "page",
+									"value": "0"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET PRODUTO",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8082/produto/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8082",
+							"path": [
+								"produto",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "FILTRAR PRODUTO",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8082/produto/filtrar/nome/teclado",
+							"host": [
+								"localhost"
+							],
+							"port": "8082",
+							"path": [
+								"produto",
+								"filtrar",
+								"nome",
+								"teclado"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DELETE PRODUTO",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:8082/produto/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8082",
+							"path": [
+								"produto",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "POST PRODUTO",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"codigo\": \"09HGTSSQ\",\n  \"nome\": \"teclado mecânico\",\n  \"descricao\": \"teclado mecânico com fio\",\n  \"fabricante\": \"Mancer\",\n  \"valor\": 150\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8082/produto",
+							"host": [
+								"localhost"
+							],
+							"port": "8082",
+							"path": [
+								"produto"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "UPDATE PRODUTO",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"id\": \"1\",\n    \"codigo\": \"87HGFDSQ\",\n    \"nome\": \"teclado mecânico\",\n    \"descricao\": \"teclado mecânico sem fio\",\n    \"fabricante\": \"Mancer\",\n    \"valor\": 150\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8082/produto",
+							"host": [
+								"localhost"
+							],
+							"port": "8082",
+							"path": [
+								"produto"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "CLIENTE SERVICE",
+			"item": [
+				{
+					"name": "LIST CLIENTES",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8084/cliente?size=10&page=0",
+							"host": [
+								"localhost"
+							],
+							"port": "8084",
+							"path": [
+								"cliente"
+							],
+							"query": [
+								{
+									"key": "size",
+									"value": "10"
+								},
+								{
+									"key": "page",
+									"value": "0"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET CLIENTE",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8084/cliente/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8084",
+							"path": [
+								"cliente",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "FILTRAR CLIENTE",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8082/produto/filtrar/nome/teclado",
+							"host": [
+								"localhost"
+							],
+							"port": "8082",
+							"path": [
+								"produto",
+								"filtrar",
+								"nome",
+								"teclado"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DELETE CLIENTE",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:8084/cliente/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8084",
+							"path": [
+								"cliente",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "POST CLIENTE",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"nome\": \"Alison\",\n  \"cpf\": \"111.111.111-11\",\n  \"telefone\": \"21983245087\",\n  \"email\": \"alison@email.com\",\n  \"endereco\": {\n    \"logradouro\": \"Rua A\",\n    \"numero\": \"1\",\n    \"cidade\": \"Caxias\",\n    \"estado\": \"Rio de Janeiro\"\n  }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8084/cliente",
+							"host": [
+								"localhost"
+							],
+							"port": "8084",
+							"path": [
+								"cliente"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "UPDATE CLIENTE",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"id\": \"1\",\n    \"nome\": \"Alison Cruz do Nascimento\",\n    \"cpf\": \"111.111.111-11\",\n    \"telefone\": \"21983245087\",\n    \"email\": \"alison@email.com\",\n    \"endereco\": {\n        \"logradouro\": \"Rua A\",\n        \"numero\": \"1\",\n        \"cidade\": \"Caxias\",\n        \"estado\": \"Rio de Janeiro\"\n    },\n    \"status\": \"ATIVO\",\n    \"statusRegistro\": \"ATIVO\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8084/cliente",
+							"host": [
+								"localhost"
+							],
+							"port": "8084",
+							"path": [
+								"cliente"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "VENDA SERVICE",
+			"item": [
+				{
+					"name": "LIST VENDAS",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8083/venda?size=10&page=0",
+							"host": [
+								"localhost"
+							],
+							"port": "8083",
+							"path": [
+								"venda"
+							],
+							"query": [
+								{
+									"key": "size",
+									"value": "10"
+								},
+								{
+									"key": "page",
+									"value": "0"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET VENDA",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8083/venda/",
+							"host": [
+								"localhost"
+							],
+							"port": "8083",
+							"path": [
+								"venda",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DELETE VENDA",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:8082/produto/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8082",
+							"path": [
+								"produto",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "POST VENDA",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"codigo\": \"238723YBG\",\n    \"cliente\": {\n        \"id\": \"3\",\n        \"nome\": \"Alison\",\n        \"cpf\": \"111.111.111-11\",\n        \"telefone\": \"21983245087\",\n        \"email\": \"alison@email.com\",\n        \"endereco\": {\n            \"logradouro\": \"Rua A\",\n            \"numero\": \"1\",\n            \"cidade\": \"Caxias\",\n            \"estado\": \"Rio de Janeiro\"\n        }\n    },\n    \"itens\": [\n        {\n            \"produto\": {\n                \"id\": \"2\",\n                \"codigo\": \"09HGTSSQ\",\n                \"nome\": \"teclado mecânico\",\n                \"descricao\": \"teclado mecânico com fio\",\n                \"fabricante\": \"Mancer\",\n                \"valor\": 150\n            },\n            \"quantidade\": 1,\n            \"valorTotal\": 150\n        }\n    ],\n    \"valorTotal\": 150,\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8083/venda",
+							"host": [
+								"localhost"
+							],
+							"port": "8083",
+							"path": [
+								"venda"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
